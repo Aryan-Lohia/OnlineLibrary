@@ -1,4 +1,3 @@
-
 from github import Github,InputGitAuthor
 import time
 import config
@@ -28,5 +27,4 @@ def update_booklist(username):
     with open("books.txt") as books:
         data = books.read()  # Modify/Create file
         push(file_path, "Update Booklist.", data, f"Update_dependencies{fileupdate}",repo, update=True)
-
-
+        
