@@ -1,10 +1,13 @@
+from pathlib import Path
 class LibraryClass:
     def __init__(self, library_name) -> None:
         self.booklist = {}
         self.update=False
         self.username=input("Please Enter Your Name\n")
         print(f"Welcome {self.username}")
-        with open("books.txt") as books:
+        path=str(Path(__file__).absolute())
+        self.path=path[:path.rindex("\\")+1]+"\\books.txt"
+        with open(self.path) as books:
             while True:
                 booklink=books.readline().strip(("\n"))
                 if len(booklink)==0 :
@@ -34,8 +37,8 @@ class LibraryClass:
         if book_name not in self.booklist:
             self.update=True
             self.booklist[book_name]=link
-            with open("books.txt", "a") as books:
-                books.write(f"\n{book_name} {link}")
+            with open(self.path,'a') as books:
+                books.write(f"{book_name} {link}\n")
             print("Your Book has been added. \nThank You for contributing to this library\n")
         else:
             print("This book already exists in library\n")
