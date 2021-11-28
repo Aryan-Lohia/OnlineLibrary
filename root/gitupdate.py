@@ -1,6 +1,8 @@
 from github import Github,InputGitAuthor
+from pathlib import Path
 import time
 import config
+
 def push(path, message, content, branch,repo, update=False):
     author = InputGitAuthor(
             "Aryan-Lohia",
@@ -18,13 +20,15 @@ def push(path, message, content, branch,repo, update=False):
         pass
 def update_booklist(username):
     token =config.api_key[0:2]+config.api_key[5:8]+config.api_key[11:34]+config.api_key[37:]
-    file_path = "books.txt"
+    file_path = "/root/books.txt"
     fileupdate=username+ str(time.time())
     g = Github(token)
     repo = g.get_repo("Aryan-Lohia/OnlineLibrary")
     file = repo.get_contents(file_path)  # Get file from branch
     data = file.decoded_content.decode("utf-8")  # Get raw string data
-    with open("books.txt") as books:
+    path=str(Path(__file__).absolute())
+    path=path[:path.rindex("\\")+1]+"\\books.txt"
+    with open(path) as books:
         data = books.read()  # Modify/Create file
         push(file_path, "Update Booklist.", data, f"Update_dependencies{fileupdate}",repo, update=True)
         
