@@ -66,4 +66,3 @@ class LibraryClass:
             self.Add_book(book, link)
         else:
             print("Invalid Entry. Please try again")
-
