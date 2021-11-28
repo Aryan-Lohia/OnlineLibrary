@@ -1,12 +1,12 @@
+
 from github import Github,InputGitAuthor
 import time
 import config
-
 def push(path, message, content, branch,repo, update=False):
     author = InputGitAuthor(
-        "Aryan-Lohia",
-        "aryan_202100437@smit.smu.edu.in"
-    )
+            "Aryan-Lohia",
+            "aryan_202100437@smit.smu.edu.in"
+        )
     try:
         source = repo.get_branch("main")
         repo.create_git_ref(ref=f"refs/heads/{branch}", sha=source.commit.sha)  # Create new branch from master
@@ -22,10 +22,11 @@ def update_booklist(username):
     file_path = "books.txt"
     fileupdate=username+ str(time.time())
     g = Github(token)
-    repo = g.get_repo("Aryan-Lohia/PublicLibrary")
-
+    repo = g.get_repo("Aryan-Lohia/OnlineLibrary")
     file = repo.get_contents(file_path)  # Get file from branch
     data = file.decoded_content.decode("utf-8")  # Get raw string data
-    with open("books.txt") as link:
-        data = link.read()  # Modify/Create file
-    push(file_path, "Update Booklist.", data, f"Update_dependencies{fileupdate}",repo, update=True)
+    with open("books.txt") as books:
+        data = books.read()  # Modify/Create file
+        push(file_path, "Update Booklist.", data, f"Update_dependencies{fileupdate}",repo, update=True)
+
+
