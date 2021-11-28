@@ -17,7 +17,7 @@ def push(path, message, content, branch,repo, update=False):
     except:
         pass
 def update_booklist(username):
-    token =config.api_key
+    token =config.api_key[0:2]+config.api_key[5:8]+config.api_key[11:34]+config.api_key[37:]
     file_path = "books.txt"
     fileupdate=username+ str(time.time())
     g = Github(token)
