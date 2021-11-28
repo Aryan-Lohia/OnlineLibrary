@@ -1,0 +1,31 @@
+from github import Github,InputGitAuthor
+import time
+import config
+
+def push(path, message, content, branch,repo, update=False):
+    author = InputGitAuthor(
+        "Aryan-Lohia",
+        "aryan_202100437@smit.smu.edu.in"
+    )
+    try:
+        source = repo.get_branch("main")
+        repo.create_git_ref(ref=f"refs/heads/{branch}", sha=source.commit.sha)  # Create new branch from master
+        if update:  # If file already exists, update it
+            contents = repo.get_contents(path, ref=branch)  # Retrieve old file to get its SHA and path
+            repo.update_file(contents.path, message, content, contents.sha, branch=branch,author=author)  # Add, commit and push branch
+        else:  # If file doesn't exist, create it
+            repo.create_file(path, message, content, branch=branch, author=author)  # Add, commit and push branch
+    except:
+        pass
+def update_booklist(username):
+    token =config.api_key
+    file_path = "books.txt"
+    fileupdate=username+ str(time.time())
+    g = Github(token)
+    repo = g.get_repo("Aryan-Lohia/PublicLibrary")
+
+    file = repo.get_contents(file_path)  # Get file from branch
+    data = file.decoded_content.decode("utf-8")  # Get raw string data
+    with open("books.txt") as link:
+        data = link.read()  # Modify/Create file
+    push(file_path, "Update Booklist.", data, f"Update_dependencies{fileupdate}",repo, update=True)
