@@ -1,3 +1,4 @@
+import urllib.request
 from pathlib import Path
 import webbrowser
 class LibraryClass:
@@ -8,18 +9,21 @@ class LibraryClass:
         print(f"Welcome {self.username}")
         path=str(Path(__file__).absolute())
         self.path=path[:path.rindex("\\")+1]+"\\books.txt"
-        with open(self.path) as books:
-            while True:
-                booklink=books.readline().strip(("\n"))
-                if len(booklink)==0 :
+        data = urllib.request.urlopen(urllib.request.Request("https://raw.githubusercontent.com/Aryan-Lohia/OnlineLibrary/win/root/books.txt"))
+        with open(self.path,"w") as books:
+            books.write("")
+            for line in data:
+                if len(line)==0 :
                     break
-                book=booklink[0 : booklink.rindex(" ")]
-                link = booklink.split()[-1]
+                line=str(line)[2:-3]
+                books.write(line+"\n")
+                book=line[0 :line.rindex(" ")]
+                link = line.split()[-1]
                 self.booklist[book.upper()] = link
         self.library_name = library_name
 
     def Display_book(self) -> None:
-        print(f"Books in {self.library_name}:")
+        print(f"Books in {self.library_name[0:14]}:")
         i=1
         for books in self.booklist:
             print(f"{i}.{books}")
@@ -41,7 +45,7 @@ class LibraryClass:
             self.booklist[book_name]=link
             with open(self.path,'a') as books:
                 books.write(f"{book_name} {link}\n")
-            print("Your Book has been added. \nThank You for contributing to this library\n")
+            print("Thank You for contributing to this library\nYour book will be checked and added soon.")
         else:
             print("This book already exists in library\n")
 
