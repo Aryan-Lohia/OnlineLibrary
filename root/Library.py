@@ -1,4 +1,5 @@
 from pathlib import Path
+import webbrowser
 class LibraryClass:
     def __init__(self, library_name) -> None:
         self.booklist = {}
@@ -31,8 +32,9 @@ class LibraryClass:
         except:
             print(f"Invalid serial no. Please choose a book from the list.\n")
             return
-        print(f"You may find {book_name} at this link: {self.booklist[book_name]}")
-
+        print("Enjoy your book!!")
+        webbrowser.open(self.booklist[book_name])
+        
     def Add_book(self, book_name,link) -> None:
         if book_name not in self.booklist:
             self.update=True
