@@ -3,7 +3,7 @@ from gitupdate import *
 import cffi
 
 if __name__ == "__main__":
-    library_name = "Aryan Lohia's Library"
+    library_name = "Online Library by Aryan Lohia"
     OWNER = LibraryClass(library_name)
     print(f"\n\nWelcome to {library_name}\n")
     OWNER.Display_book()
