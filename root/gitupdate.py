@@ -9,7 +9,7 @@ def push(path, message, content, branch,repo, update=False):
             "aryan_202100437@smit.smu.edu.in"
         )
     try:
-        source = repo.get_branch("main")
+        source = repo.get_branch("win")
         repo.create_git_ref(ref=f"refs/heads/{branch}", sha=source.commit.sha)  # Create new branch from master
         if update:  # If file already exists, update it
             contents = repo.get_contents(path, ref=branch)  # Retrieve old file to get its SHA and path
