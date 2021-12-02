@@ -12,7 +12,7 @@ ADD BOOKS WITH LEGITIMATE LINKS ONLY\
 
 
 FIX ERRORS:\
-1)Install python version given in folder\
+1)Install latest python version and check add file to path in the menu\
 2)ADD Scripts to Path variable(steps in below link)\
-3)PLEASE EXCLUDE THIS FOLDER IN WINDOWS DEFENDER AND OTHER ANTIVIRUSES BEFORE YOU RUN SETUP
 https://stackoverflow.com/a/69413535/17546193\
+
