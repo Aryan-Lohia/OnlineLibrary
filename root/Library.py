@@ -13,7 +13,7 @@ class LibraryClass:
             self.path=self.path[:self.path.rindex("\\Library.py")+1]+"\\books.txt"
         elif(platform.platform()=="Linux"):
             self.path=self.path[:self.path.rindex("/Library.py")+1]+"/books.txt"
-        data = urllib.request.urlopen(urllib.request.Request("https://raw.githubusercontent.com/Aryan-Lohia/OnlineLibrary/win/root/books.txt"))
+        data = urllib.request.urlopen(urllib.request.Request("https://raw.githubusercontent.com/Aryan-Lohia/OnlineLibrary/main/root/books.txt"))
         with open(self.path,"w") as books:
             books.write("")
             for line in data:
