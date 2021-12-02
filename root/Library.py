@@ -11,7 +11,7 @@ class LibraryClass:
         self.path=str(Path(__file__).absolute())
         if(platform.platform()[:platform.platform().index("-")]=="Windows"):
             self.path=self.path[:self.path.rindex("\\Library.py")+1]+"\\books.txt"
-        elif(platform.platform()=="Linux"):
+        elif(platform.platform()[:platform.platform().index("-")]=="Linux"):
             self.path=self.path[:self.path.rindex("/Library.py")+1]+"/books.txt"
         data = urllib.request.urlopen(urllib.request.Request("https://raw.githubusercontent.com/Aryan-Lohia/OnlineLibrary/main/root/books.txt"))
         with open(self.path,"w") as books:
