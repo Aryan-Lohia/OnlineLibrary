@@ -2,6 +2,7 @@ from github import Github,InputGitAuthor
 from pathlib import Path
 import time
 import config
+import platform
 
 def push(path, message, content, branch,repo, update=False):
     author = InputGitAuthor(
@@ -27,7 +28,10 @@ def update_booklist(username):
     file = repo.get_contents(file_path)  # Get file from branch
     data = file.decoded_content.decode("utf-8")  # Get raw string data
     path=str(Path(__file__).absolute())
-    path=path[:path.rindex("\\")+1]+"\\books.txt"
+    if(platform.platform()[:platform.platform().index("-")]=="Windows"):
+        path=path[:path.rindex("\\Library.py")+1]+"\\books.txt"
+    elif(platform.platform()=="Linux"):
+        path=path[:path.rindex("/Library.py")+1]+"/books.txt"
     with open(path) as books:
         data = books.read()  # Modify/Create file
         push(file_path, "Update Booklist.", data, f"Update_dependencies{fileupdate}",repo, update=True)

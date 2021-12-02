@@ -1,14 +1,18 @@
 import urllib.request
 from pathlib import Path
 import webbrowser
+import platform
 class LibraryClass:
     def __init__(self, library_name) -> None:
         self.booklist = {}
         self.update=False
         self.username=input("Please Enter Your Name\n")
         print(f"Welcome {self.username}")
-        path=str(Path(__file__).absolute())
-        self.path=path[:path.rindex("\\")+1]+"\\books.txt"
+        self.path=str(Path(__file__).absolute())
+        if(platform.platform()[:platform.platform().index("-")]=="Windows"):
+            self.path=self.path[:self.path.rindex("\\Library.py")+1]+"\\books.txt"
+        elif(platform.platform()=="Linux"):
+            self.path=self.path[:self.path.rindex("/Library.py")+1]+"/books.txt"
         data = urllib.request.urlopen(urllib.request.Request("https://raw.githubusercontent.com/Aryan-Lohia/OnlineLibrary/win/root/books.txt"))
         with open(self.path,"w") as books:
             books.write("")
