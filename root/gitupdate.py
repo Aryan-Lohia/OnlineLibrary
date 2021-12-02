@@ -30,7 +30,7 @@ def update_booklist(username):
     path=str(Path(__file__).absolute())
     if(platform.platform()[:platform.platform().index("-")]=="Windows"):
         path=path[:path.rindex("\\Library.py")+1]+"\\books.txt"
-    elif(platform.platform()=="Linux"):
+    elif(platform.platform()[:platform.platform().index("-")]=="Linux"):
         path=path[:path.rindex("/Library.py")+1]+"/books.txt"
     with open(path) as books:
         data = books.read()  # Modify/Create file
