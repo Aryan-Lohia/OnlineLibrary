@@ -5,7 +5,8 @@ THERE IS NO MALWARE\
 IT SHOWS "POTENTIAL VIRUS" COZ IT"S AN EXE FILE BY AN UNSIGNED PUBLISHER.\
 
 
-RUN win_OnlineLibrary_setup.bat\
+RUN win_OnlineLibrary_setup.bat for WINDOWS\
+RUN linux_OnlineLibrary_setup.sh for Linux\
 run Online Library.exe\
 ADD BOOKS WITH LEGITIMATE LINKS ONLY\
 .\
